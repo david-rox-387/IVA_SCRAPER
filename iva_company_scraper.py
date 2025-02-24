@@ -136,7 +136,7 @@ if __name__ == "__main__":
     # Get API credentials from environment variables
     API_KEY = os.getenv('GOOGLE_API_KEY')
     CSE_ID = os.getenv('GOOGLE_CSE_ID')
-    VAT_NUMBER = '07727071008'
+    VAT_NUMBER = 'COMPANY SRL' #or '0772707458'
 
     if not all([API_KEY, CSE_ID]):
         print("Error: Missing API credentials in .env file")

@@ -1,10 +1,13 @@
 # Italian VAT Number Company Scraper
 
-This Python script allows you to retrieve company information using Italian VAT numbers (Partita IVA) by scraping data from ufficiocamerale.it through Google Custom Search API.
+This Python script allows you to retrieve company information using Italian VAT numbers (Partita IVA) and/or company names by scraping data from ufficiocamerale.it through Google Custom Search API.
 
 ## Features
 
-- Retrieves company information using VAT numbers
+- Retrieves company information using:
+  - VAT numbers (Partita IVA)
+  - Company names
+  - Or a combination of both
 - Extracts data such as:
   - Company name
   - VAT number
@@ -24,17 +27,20 @@ This Python script allows you to retrieve company information using Italian VAT 
 ## Setup
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/david-rox-387/IVA_SCRAPER.git
 cd IVA_SCRAPER
 ```
 
 2. Install required packages:
+
 ```bash
 pip install -r requirements.txt
 ```
 
 3. Set up Google Custom Search API:
+
    - Visit [Google Custom Search API Documentation](https://developers.google.com/custom-search/v1/overview)
    - Create a new project in Google Cloud Console
    - Enable Custom Search API
@@ -44,12 +50,11 @@ pip install -r requirements.txt
    - In the search engine settings, make sure to:
      - Set it to search the entire web
      - Add `ufficiocamerale.it` to the sites to search
-
 4. Create a `.env` file in the project root:
+
 ```bash
 GOOGLE_API_KEY=your_api_key_here
 GOOGLE_CSE_ID=your_search_engine_id_here
-TEST_VAT_NUMBER=example_vat_number  # Optional
 ```
 
 ## Usage
@@ -68,10 +73,28 @@ scraper = CompanyScraper(
     cse_id=os.getenv('GOOGLE_CSE_ID')
 )
 
-# Get company information
+# Get company information using VAT number
 result = scraper.get_company_info("07727071008")
 print(result)
+
+# Get company information using company name
+result = scraper.get_company_info("COMPANY SRL")
+print(result)
+
+# Get company information using both
+result = scraper.get_company_info("COMPANY SRL 07727071008")
+print(result)
 ```
+
+## Search Parameter
+
+The `get_company_info` method accepts a string parameter that can be:
+
+- A VAT number (e.g., "07727071008")
+- A company name (e.g., "COMPANY SRL")
+- A combination of both (e.g., "COMPANY SRL 07727071008")
+
+The search will be performed using the provided information to find the most relevant company data.
 
 ## Response Format
 
@@ -109,4 +132,4 @@ Feel free to open issues or submit pull requests for any improvements.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.

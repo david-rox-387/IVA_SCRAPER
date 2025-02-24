@@ -49,7 +49,6 @@ pip install -r requirements.txt
 ```bash
 GOOGLE_API_KEY=your_api_key_here
 GOOGLE_CSE_ID=your_search_engine_id_here
-TEST_VAT_NUMBER=example_vat_number  # Optional
 ```
 
 ## Usage

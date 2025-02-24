@@ -1,14 +1,14 @@
-# Italian VAT Number Company Scraper
+# Italian Company Information Scraper
 
-This Python script allows you to retrieve company information using Italian VAT numbers (Partita IVA) and/or company names by scraping data from ufficiocamerale.it through Google Custom Search API.
+This Python script allows you to retrieve Italian company information by searching with VAT numbers (Partita IVA) and/or company names. It scrapes data from ufficiocamerale.it through Google Custom Search API.
 
 ## Features
 
-- Retrieves company information using:
-  - VAT numbers (Partita IVA)
-  - Company names
-  - Or a combination of both
-- Extracts data such as:
+- Flexible search options:
+  - Search by VAT number (Partita IVA)
+  - Search by company name
+  - Search using both VAT number and company name
+- Extracts comprehensive company data:
   - Company name
   - VAT number
   - ATECO code and description
@@ -16,8 +16,8 @@ This Python script allows you to retrieve company information using Italian VAT 
   - Number of employees
   - Company registration date
   - Legal form
-- Uses Google Custom Search API for precise search results
-- Environment variables for secure credential management
+- Uses Google Custom Search API for accurate results
+- Secure credential management through environment variables
 
 ## Prerequisites
 
@@ -59,6 +59,8 @@ GOOGLE_CSE_ID=your_search_engine_id_here
 
 ## Usage
 
+The script provides multiple ways to search for company information:
+
 ```python
 from iva_company_scraper import CompanyScraper
 import os
@@ -73,28 +75,30 @@ scraper = CompanyScraper(
     cse_id=os.getenv('GOOGLE_CSE_ID')
 )
 
-# Get company information using VAT number
+# Search methods:
+
+# 1. Search by VAT number only
 result = scraper.get_company_info("07727071008")
 print(result)
 
-# Get company information using company name
+# 2. Search by company name only
 result = scraper.get_company_info("COMPANY SRL")
 print(result)
 
-# Get company information using both
+# 3. Search by both name and VAT number
 result = scraper.get_company_info("COMPANY SRL 07727071008")
 print(result)
 ```
 
-## Search Parameter
+## Search Parameters
 
-The `get_company_info` method accepts a string parameter that can be:
+The `get_company_info` method is flexible and accepts:
 
-- A VAT number (e.g., "07727071008")
-- A company name (e.g., "COMPANY SRL")
-- A combination of both (e.g., "COMPANY SRL 07727071008")
+- VAT number only: `"07727071008"`
+- Company name only: `"COMPANY SRL"`
+- Combined search: `"COMPANY SRL 07727071008"`
 
-The search will be performed using the provided information to find the most relevant company data.
+The search will use the provided information to find the most relevant company data. When using both name and VAT number, the search is typically more accurate.
 
 ## Response Format
 
@@ -118,7 +122,7 @@ The script returns a JSON string with the following structure:
 
 ## Error Handling
 
-The script returns error messages in JSON format:
+If any errors occur, the script returns a JSON error message:
 
 ```json
 {
@@ -128,12 +132,11 @@ The script returns error messages in JSON format:
 
 ## Contributing
 
-Feel free to open issues or submit pull requests for any improvements.
+Contributions are welcome! Feel free to:
+- Open issues for bugs or suggestions
+- Submit pull requests for improvements
+- Suggest new features or enhancements
 
 ## License
 
-<<<<<<< HEAD
 This project is licensed under the MIT License - see the LICENSE file for details.
-=======
-This project is licensed under the MIT License - see the LICENSE file for details. 
->>>>>>> e69fe8876c916b7726179aa07e61428f5808f33a
